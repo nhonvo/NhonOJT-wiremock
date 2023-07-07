@@ -1,0 +1,37 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  wiremock-web:
+    image: wiremock-api
+    build:
+      context: .
+      dockerfile: WebAPI/Dockerfile
+    ports:
+      - 5025:5025
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      # - postgres
+      - wire_mock
+
+  # postgres:
+  #   image: postgres
+  #   ports:
+  #     - 5432:5432
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=123
+  #     - POSTGRES_DB=redisdb
+  #   volumes:
+  #     - ./pgdata:/var/lib/postgresql/data
+
+  wire_mock:
+    image: rodolpheche/wiremock
+    command: --local-response-templating
+    volumes :
+      - ./wiremock/mappings:/home/wiremock/mappings
+    ports:
+      - 4656:8080

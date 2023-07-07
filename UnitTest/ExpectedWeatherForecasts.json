@@ -1,0 +1,17 @@
+[
+  {
+    "Date": "2023-07-01",
+    "TemperatureC": 25,
+    "Summary": "Sunny"
+  },
+  {
+    "Date": "2023-07-01",
+    "TemperatureC": 15,
+    "Summary": "Cloudy"
+  },
+  {
+    "Date": "2023-07-01",
+    "TemperatureC": 10,
+    "Summary": "Rainy"
+  }
+]
